@@ -15,9 +15,12 @@ function AIChatbot() {
     setInput("");
 
     try {
-      const response = await axios.post("http://localhost:3001/api/chatbot", {
-        messages: updatedMessages,
-      });
+      const response = await axios.post(
+        "https://local-mental-health-finder-1.onrender.com/api/chatbot",
+        {
+          messages: updatedMessages,
+        }
+      );
 
       const reply = response.data.reply;
 
