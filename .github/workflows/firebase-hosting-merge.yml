@@ -20,21 +20,12 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      # ✅ Insert this check BEFORE deploying to Firebase
-      - name: Check if secret is loaded (safe)
-        run: |
-          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
-            echo "❌ Secret is missing or not loaded"
-            exit 1
-          else
-            echo "✅ Secret is loaded (content hidden for safety)"
-          fi
-
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LOCAL_MENTAL_HEALTH_FIND_96E8C
+ }}
           channelId: live
           projectId: local-mental-health-find-96e8c
           entryPoint: ./
