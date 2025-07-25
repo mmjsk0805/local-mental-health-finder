@@ -33,7 +33,8 @@ router.get("/oauth2callback", async (req, res) => {
     refresh_token: tokens.refresh_token,
   }).toString();
 
-  res.redirect(`http://localhost:5173/oauth-success?${queryString}`);
+  const redirectBase = process.env.FRONTEND_BASE_URL || "http://localhost:5173";
+  res.redirect(`${redirectBase}/oauth-success?access_token=${token}`);
 });
 
 // Route to create event from frontend data
