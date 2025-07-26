@@ -9,7 +9,14 @@ const chatbotRoutes = require("./routes/chatbot");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://local-mental-health-find-96e8c.web.app",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use("/calendar", calendarRoutes);
