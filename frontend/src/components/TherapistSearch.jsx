@@ -15,7 +15,8 @@ function TherapistSearch() {
 
     try {
       const response = await axios.post(
-        "${import.meta.env.VITE_API_BASE_URL}/api/recommendation",
+        `${import.meta.env.VITE_API_BASE_URL}/api/recommendation`, // ✅ correct usage
+
         {
           location,
           messages: [{ role: "user", content: symptoms }],
