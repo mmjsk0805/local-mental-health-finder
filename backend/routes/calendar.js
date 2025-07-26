@@ -54,12 +54,13 @@ router.post("/create-event", async (req, res) => {
       resource: event,
     });
 
-    console.log("✅ Event created:", response.data.htmlLink);
+    console.log("Event created:", response.data.htmlLink);
 
-    res.status(200).json({ htmlLink: response.data.htmlLink });
-  } catch (error) {
-    console.error("❌ Error creating calendar event:", error.message);
-    res.status(500).json({ error: "Failed to create event." });
+    // ✅ This line is critical
+    res.json({ htmlLink: response.data.htmlLink });
+  } catch (err) {
+    console.error("Error creating event:", err);
+    res.status(500).json({ error: "Event creation failed." });
   }
 });
 
