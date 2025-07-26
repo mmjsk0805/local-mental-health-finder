@@ -40,6 +40,8 @@ function EventForm() {
         }
       );
 
+      console.log("🎯 Event creation response:", response.data);
+
       alert("Event created: " + response.data.htmlLink);
     } catch (error) {
       console.error(error);

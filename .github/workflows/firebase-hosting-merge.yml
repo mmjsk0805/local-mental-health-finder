@@ -10,27 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 🧪 Check if secret is loaded (debug)
-        run: |
-          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
-            echo "❌ Secret is missing or not loaded"
-            exit 1
-          else
-            echo "✅ Secret is loaded (content hidden)"
-          fi
-
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
         working-directory: frontend
 
-      - name: 🛠️ Build project
+      - name: Build project
         run: npm run build
         working-directory: frontend
 
-      - name: 🚀 Deploy to Firebase
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
