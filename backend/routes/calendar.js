@@ -41,33 +41,25 @@ router.get("/oauth2callback", async (req, res) => {
 
 // Route to create event from frontend data
 router.post("/create-event", async (req, res) => {
-  const { tokens, event } = req.body;
-
-  if (!tokens || !event) {
-    return res.status(400).json({ error: "Missing tokens or event data." });
-  }
-
-  const tempClient = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URI
-  );
-  tempClient.setCredentials(tokens);
-
-  const calendar = google.calendar({ version: "v3", auth: tempClient });
-
   try {
-    console.log("Creating event with data:", event);
+    const { tokens, event } = req.body;
+
+    const oAuth2Client = new google.auth.OAuth2();
+    oAuth2Client.setCredentials(tokens);
+
+    const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
 
     const response = await calendar.events.insert({
       calendarId: "primary",
       resource: event,
     });
 
-    res.json(response.data);
+    console.log("✅ Event created:", response.data.htmlLink);
+
+    res.status(200).json({ htmlLink: response.data.htmlLink });
   } catch (error) {
-    console.error("Error creating event:", error);
-    res.status(500).json({ error: error.message });
+    console.error("❌ Error creating calendar event:", error.message);
+    res.status(500).json({ error: "Failed to create event." });
   }
 });
 
