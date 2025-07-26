@@ -28,7 +28,7 @@ function EventForm() {
       };
 
       const response = await axios.post(
-        "${import.meta.env.VITE_API_BASE_URL}/calendar/create-event",
+        `${import.meta.env.VITE_API_BASE_URL}/calendar/create-event`,
         {
           tokens,
           event: {
