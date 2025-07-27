@@ -9,13 +9,14 @@ function TherapistSearch() {
   const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault(); // also important to prevent reload
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/recommend`,
         {
           location,
-          symptom,
+          symptom: symptoms, // ✅ FIXED HERE
         }
       );
 
