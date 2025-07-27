@@ -11,9 +11,11 @@ function TherapistSearch() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/recommend`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/recommendation`,
         {
           location,
           messages: [
@@ -34,11 +36,10 @@ function TherapistSearch() {
       const aiReply = response.data.aiReply || "";
       setAiResponse(aiReply);
 
-      const topNames = aiReply
-        ? [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map((match) =>
-            match[1].toLowerCase().trim()
-          )
-        : [];
+      // Extract names from AI reply
+      const topNames = [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map(
+        (match) => match[1].toLowerCase().trim()
+      );
 
       const aiMatched = [];
       const remaining = [];
@@ -55,10 +56,13 @@ function TherapistSearch() {
       }
 
       const ordered = [...aiMatched.filter(Boolean), ...remaining].slice(0, 10);
-
       setResults(ordered);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching recommendations:", err);
+      setAiResponse("Failed to get AI recommendations.");
+      setResults([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -112,7 +116,7 @@ function TherapistSearch() {
             key={biz.id}
             therapist={biz}
             index={index}
-            isRecommended={index < 3}
+            isRecommended={index < 3} // highlight top 3
           />
         ))}
       </div>
