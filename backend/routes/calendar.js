@@ -55,6 +55,11 @@ router.post("/create-event", async (req, res) => {
 
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
 
+    console.log("Incoming event values:");
+    console.log("Summary:", event.summary);
+    console.log("Start:", event.startTime);
+    console.log("End:", event.endTime);
+
     const response = await calendar.events.insert({
       calendarId: "primary",
       resource: {
