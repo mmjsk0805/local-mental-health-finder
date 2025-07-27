@@ -36,7 +36,6 @@ function TherapistSearch() {
       const aiReply = response.data.aiReply || "";
       setAiResponse(aiReply);
 
-      // Extract names from AI reply
       const topNames = [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map(
         (match) => match[1].toLowerCase().trim()
       );
@@ -65,6 +64,28 @@ function TherapistSearch() {
       setLoading(false);
     }
   };
+
+  function formatAIRecommendation(text) {
+    return text.split("\n").map((line, idx) => {
+      const match = line.match(/^(\d+)\.\s\*\*(.*?)\*\*\s-\s(.*)/);
+      if (match) {
+        const [, number, name, rest] = match;
+        return (
+          <p key={idx} style={{ marginBottom: "1rem" }}>
+            <strong>
+              {number}. {name}
+            </strong>{" "}
+            - {rest}
+          </p>
+        );
+      }
+      return (
+        <p key={idx} style={{ marginBottom: "1rem" }}>
+          {line}
+        </p>
+      );
+    });
+  }
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -99,8 +120,10 @@ function TherapistSearch() {
             borderRadius: "8px",
           }}
         >
-          <h4>AI Recommendation:</h4>
-          <p>{aiResponse}</p>
+          <h4>AI Recommendation</h4>
+          <div style={{ lineHeight: "1.6" }}>
+            {formatAIRecommendation(aiResponse)}
+          </div>
         </div>
       )}
 
@@ -116,7 +139,7 @@ function TherapistSearch() {
             key={biz.id}
             therapist={biz}
             index={index}
-            isRecommended={index < 3} // highlight top 3
+            isRecommended={index < 3}
           />
         ))}
       </div>
