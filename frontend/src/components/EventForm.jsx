@@ -34,8 +34,14 @@ function EventForm() {
           event: {
             summary: event.summary,
             description: event.description,
-            startTime: event.start,
-            endTime: event.end,
+            start: {
+              dateTime: new Date(event.start).toISOString(),
+              timeZone: "America/New_York",
+            },
+            end: {
+              dateTime: new Date(event.end).toISOString(),
+              timeZone: "America/New_York",
+            },
           },
         }
       );
