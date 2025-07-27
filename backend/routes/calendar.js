@@ -65,14 +65,8 @@ router.post("/create-event", async (req, res) => {
       resource: {
         summary: event.summary,
         description: event.description,
-        start: {
-          dateTime: event.startTime,
-          timeZone: "America/New_York",
-        },
-        end: {
-          dateTime: event.endTime,
-          timeZone: "America/New_York",
-        },
+        start: event.start,
+        end: event.end,
       },
     });
 
