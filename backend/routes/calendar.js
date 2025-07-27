@@ -63,12 +63,12 @@ router.post("/create-event", async (req, res) => {
         summary: event.summary,
         description: event.description,
         start: {
-          dateTime: event.start.dateTime,
-          timeZone: event.start.timeZone || "America/New_York", // use fallback
+          dateTime: event.startTime,
+          timeZone: "America/New_York",
         },
         end: {
-          dateTime: event.end.dateTime,
-          timeZone: event.end.timeZone || "America/New_York",
+          dateTime: event.endTime,
+          timeZone: "America/New_York",
         },
       },
     });
@@ -76,7 +76,10 @@ router.post("/create-event", async (req, res) => {
     console.log("✅ Google Calendar API Response:", response.data);
     return res.json({ htmlLink: response.data.htmlLink });
   } catch (err) {
-    console.error("❌ Calendar event creation error:", err.message);
+    console.error(
+      "❌ Calendar event creation error:",
+      err.response?.data || err.message || err
+    );
     return res.status(500).json({ error: "Failed to create event." });
   }
 });
