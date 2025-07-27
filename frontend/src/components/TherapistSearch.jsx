@@ -9,27 +9,43 @@ function TherapistSearch() {
   const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
+  const handleSearch = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/api/recommendation`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/recommend`,
         {
           location,
-          messages: [{ role: "user", content: symptoms }],
+          symptom,
         }
       );
 
-      setResults(response.data.businesses || []);
-      setAiResponse(response.data.aiReply || "");
-    } catch (error) {
-      console.error("Error fetching therapists:", error);
-      setResults([]);
-      setAiResponse("Failed to get recommendations.");
-    } finally {
-      setLoading(false);
+      const businesses = response.data.businesses || [];
+      const aiReply = response.data.aiReply || "";
+      setAiResponse(aiReply);
+
+      const topNames = [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map(
+        (match) => match[1].toLowerCase().trim()
+      );
+
+      const aiMatched = [];
+      const remaining = [];
+
+      for (const biz of businesses) {
+        const idx = topNames.findIndex((name) =>
+          biz.name.toLowerCase().includes(name)
+        );
+        if (idx !== -1) {
+          aiMatched[idx] = biz;
+        } else {
+          remaining.push(biz);
+        }
+      }
+
+      const ordered = [...aiMatched.filter(Boolean), ...remaining].slice(0, 10);
+
+      setResults(ordered);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -79,7 +95,12 @@ function TherapistSearch() {
         }}
       >
         {results.map((biz, index) => (
-          <TherapistCard key={biz.id} therapist={biz} index={index} />
+          <TherapistCard
+            key={biz.id}
+            therapist={biz}
+            index={index}
+            isRecommended={index < 3}
+          />
         ))}
       </div>
     </div>
