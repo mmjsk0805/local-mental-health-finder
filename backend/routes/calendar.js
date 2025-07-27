@@ -50,7 +50,10 @@ router.post("/create-event", async (req, res) => {
       process.env.GOOGLE_REDIRECT_URI
     );
 
-    oAuth2Client.setCredentials(tokens);
+    oAuth2Client.setCredentials({
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+    });
 
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
 
