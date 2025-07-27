@@ -41,7 +41,11 @@ function EventForm() {
       );
 
       console.log("🎯 Event creation response:", response.data);
-      alert("Event created: " + response.data.htmlLink);
+      alert(
+        `✅ Event confirmed!\nStart: ${new Date(
+          event.start
+        ).toLocaleString()}\nEnd: ${new Date(event.end).toLocaleString()}`
+      );
     } catch (error) {
       console.error(error);
       alert("Error creating event.");
