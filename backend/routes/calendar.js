@@ -57,8 +57,8 @@ router.post("/create-event", async (req, res) => {
 
     console.log("Incoming event values:");
     console.log("Summary:", event.summary);
-    console.log("Start:", event.startTime);
-    console.log("End:", event.endTime);
+    console.log("Start:", event.start?.dateTime);
+    console.log("End:", event.end?.dateTime);
 
     const response = await calendar.events.insert({
       calendarId: "primary",
