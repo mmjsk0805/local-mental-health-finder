@@ -10,13 +10,23 @@ function TherapistSearch() {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
-    e.preventDefault(); // also important to prevent reload
+    e.preventDefault();
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/recommend`,
         {
           location,
-          symptom: symptoms, // ✅ FIXED HERE
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a helpful assistant that recommends mental health therapists based on a user's symptoms and preferences.",
+            },
+            {
+              role: "user",
+              content: `I am seeking therapy for the following symptoms or needs: ${symptoms}`,
+            },
+          ],
         }
       );
 
@@ -24,9 +34,11 @@ function TherapistSearch() {
       const aiReply = response.data.aiReply || "";
       setAiResponse(aiReply);
 
-      const topNames = [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map(
-        (match) => match[1].toLowerCase().trim()
-      );
+      const topNames = aiReply
+        ? [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map((match) =>
+            match[1].toLowerCase().trim()
+          )
+        : [];
 
       const aiMatched = [];
       const remaining = [];
