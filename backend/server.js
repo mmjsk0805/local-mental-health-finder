@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://local-mental-health-find-96e8c.web.app/",
+      "https://local-mental-health-find-96e8c.web.app",
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -21,16 +21,23 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.url}`);
+  next();
+});
 
 app.use("/calendar", calendarRoutes);
 app.use("/api", yelpRoutes);
 app.use("/api", recommendationRoutes);
 app.use("/api", chatbotRoutes);
 
-app.use((req, res) => {
-  res.status(404).send("Route not found.");
+app.get("/", (req, res) => {
+  res.send("Server is running");
 });
 
-app.listen(3001, () => {
-  console.log("Backend running on port 3001");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
