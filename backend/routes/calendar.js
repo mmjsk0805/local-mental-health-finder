@@ -60,6 +60,26 @@ router.post("/create-event", async (req, res) => {
     console.log("Start:", event.start?.dateTime);
     console.log("End:", event.end?.dateTime);
 
+    console.log(
+      "Sending to Google Calendar:",
+      JSON.stringify(
+        {
+          summary: event.summary,
+          description: event.description,
+          start: {
+            dateTime: event.start,
+            timeZone: "America/New_York",
+          },
+          end: {
+            dateTime: event.end,
+            timeZone: "America/New_York",
+          },
+        },
+        null,
+        2
+      )
+    );
+
     const response = await calendar.events.insert({
       calendarId: "primary",
       resource: {
@@ -75,8 +95,6 @@ router.post("/create-event", async (req, res) => {
         },
       },
     });
-
-    console.log("Received event:", JSON.stringify(event, null, 2));
 
     console.log("✅ Google Calendar API Response:", response.data);
     return res.json({ htmlLink: response.data.htmlLink });
