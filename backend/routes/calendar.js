@@ -59,14 +59,24 @@ router.post("/create-event", async (req, res) => {
 
     const response = await calendar.events.insert({
       calendarId: "primary",
-      resource: event,
+      resource: {
+        summary: event.summary,
+        description: event.description,
+        start: {
+          dateTime: event.start.dateTime,
+          timeZone: event.start.timeZone || "America/New_York", // use fallback
+        },
+        end: {
+          dateTime: event.end.dateTime,
+          timeZone: event.end.timeZone || "America/New_York",
+        },
+      },
     });
 
     console.log("✅ Google Calendar API Response:", response.data);
-
     return res.json({ htmlLink: response.data.htmlLink });
   } catch (err) {
-    console.error("❌ Calendar event creation error:", err);
+    console.error("❌ Calendar event creation error:", err.message);
     return res.status(500).json({ error: "Failed to create event." });
   }
 });
