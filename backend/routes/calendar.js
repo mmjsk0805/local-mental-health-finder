@@ -65,10 +65,18 @@ router.post("/create-event", async (req, res) => {
       resource: {
         summary: event.summary,
         description: event.description,
-        start: event.start,
-        end: event.end,
+        start: {
+          dateTime: event.start,
+          timeZone: "America/New_York",
+        },
+        end: {
+          dateTime: event.end,
+          timeZone: "America/New_York",
+        },
       },
     });
+
+    console.log("Received event:", JSON.stringify(event, null, 2));
 
     console.log("✅ Google Calendar API Response:", response.data);
     return res.json({ htmlLink: response.data.htmlLink });
