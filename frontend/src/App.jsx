@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import TherapistSearch from "./components/TherapistSearch";
 import EventForm from "./components/EventForm";
 import AIChatbot from "./components/AIChatbot";
+import OAuthSuccess from "./components/OAuthSuccess";
 import "./styles/theme.css";
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
       <main className="content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/create-event" element={<EventForm />} />
           <Route path="/oauth-success" element={<OAuthSuccess />} />
-
           <Route path="/find-therapists" element={<TherapistSearch />} />
           <Route path="/create-event" element={<EventForm />} />
           <Route path="/chatbot" element={<AIChatbot />} />
