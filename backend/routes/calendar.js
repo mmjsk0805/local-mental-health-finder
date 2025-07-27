@@ -76,10 +76,14 @@ router.post("/create-event", async (req, res) => {
     console.log("✅ Google Calendar API Response:", response.data);
     return res.json({ htmlLink: response.data.htmlLink });
   } catch (err) {
-    console.error(
-      "❌ Calendar event creation error:",
-      err.response?.data || err.message || err
-    );
+    console.error("❌ Calendar event creation error:");
+    if (err.response?.data) {
+      console.error("➡️ Response:", err.response.data);
+    } else if (err.errors) {
+      console.error("➡️ Errors:", err.errors);
+    } else {
+      console.error("➡️ Message:", err.message);
+    }
     return res.status(500).json({ error: "Failed to create event." });
   }
 });
