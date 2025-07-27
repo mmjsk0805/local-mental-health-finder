@@ -35,7 +35,7 @@ router.get("/oauth2callback", async (req, res) => {
 
   const redirectBase = process.env.FRONTEND_BASE_URL || "http://localhost:5173";
   res.redirect(
-    `${redirectBase}/oauth-success?access_token=${tokens.access_token}`
+    `${redirectBase}/oauth-success?access_token=${tokens.access_token}&refresh_token=${tokens.refresh_token}`
   );
 });
 
@@ -56,7 +56,6 @@ router.post("/create-event", async (req, res) => {
 
     console.log("✅ Google Calendar API Response:", response.data);
 
-    // 🔥 This is the key fix
     return res.json({ htmlLink: response.data.htmlLink });
   } catch (err) {
     console.error("❌ Calendar event creation error:", err);

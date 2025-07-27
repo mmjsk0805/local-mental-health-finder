@@ -11,15 +11,17 @@ function OAuthSuccess() {
     const refreshToken = params.get("refresh_token");
 
     if (accessToken && refreshToken) {
-      localStorage.setItem("access_token", accessToken);
-      localStorage.setItem("refresh_token", refreshToken);
+      try {
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("refresh_token", refreshToken);
+        console.log("✅ Tokens stored in localStorage");
 
-      console.log("Tokens stored!");
-
-      // Automatically redirect after 1 second delay
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+        setTimeout(() => navigate("/create-event"), 1000);
+      } catch (error) {
+        console.error("❌ Failed to store tokens", error);
+      }
+    } else {
+      console.warn("⚠️ Missing tokens in query params");
     }
   }, [location, navigate]);
 
