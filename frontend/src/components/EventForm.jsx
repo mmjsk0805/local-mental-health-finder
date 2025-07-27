@@ -27,27 +27,20 @@ function EventForm() {
         refresh_token: localStorage.getItem("refresh_token"),
       };
 
-      await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/calendar/create-event`,
         {
           tokens,
           event: {
             summary: event.summary,
             description: event.description,
-            start: {
-              dateTime: event.start,
-              timeZone: "America/New_York",
-            },
-            end: {
-              dateTime: event.end,
-              timeZone: "America/New_York",
-            },
+            start: new Date(event.start).toISOString(),
+            end: new Date(event.end).toISOString(),
           },
         }
       );
 
       console.log("🎯 Event creation response:", response.data);
-
       alert("Event created: " + response.data.htmlLink);
     } catch (error) {
       console.error(error);
