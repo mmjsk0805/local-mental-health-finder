@@ -35,11 +35,11 @@ function EventForm() {
             summary: event.summary,
             description: event.description,
             start: {
-              dateTime: new Date(event.start).toISOString(),
+              dateTime: event.start,
               timeZone: "America/New_York",
             },
             end: {
-              dateTime: new Date(event.end).toISOString(),
+              dateTime: event.end,
               timeZone: "America/New_York",
             },
           },
