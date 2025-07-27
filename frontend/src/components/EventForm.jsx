@@ -27,15 +27,15 @@ function EventForm() {
         refresh_token: localStorage.getItem("refresh_token"),
       };
 
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/calendar/create-event`,
         {
           tokens,
           event: {
-            summary: event.summary,
-            description: event.description,
-            start: { dateTime: new Date(event.start).toISOString() },
-            end: { dateTime: new Date(event.end).toISOString() },
+            summary,
+            description,
+            startTime,
+            endTime,
           },
         }
       );
