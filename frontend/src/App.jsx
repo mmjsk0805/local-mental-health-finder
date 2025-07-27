@@ -13,6 +13,8 @@ function App() {
       <main className="content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/oauth-success" element={<OAuthSuccess />} />
+
           <Route path="/find-therapists" element={<TherapistSearch />} />
           <Route path="/create-event" element={<EventForm />} />
           <Route path="/chatbot" element={<AIChatbot />} />
