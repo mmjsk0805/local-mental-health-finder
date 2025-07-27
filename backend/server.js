@@ -12,8 +12,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Local React dev server
-      "https://local-mental-health-find-9e6e8c.web.app", // Deployed frontend
+      "http://localhost:5173",
+      "https://local-mental-health-find-96e8c.web.app/",
     ],
     methods: ["GET", "POST"],
     credentials: true,
