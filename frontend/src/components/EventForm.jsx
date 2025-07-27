@@ -32,10 +32,10 @@ function EventForm() {
         {
           tokens,
           event: {
-            summary,
-            description,
-            startTime,
-            endTime,
+            summary: event.summary,
+            description: event.description,
+            startTime: event.start,
+            endTime: event.end,
           },
         }
       );
