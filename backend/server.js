@@ -9,12 +9,20 @@ const chatbotRoutes = require("./routes/chatbot");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://local-mental-health-find-96e8c.web.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://local-mental-health-find-96e8c.web.app",
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST"],
     credentials: true,
   })
