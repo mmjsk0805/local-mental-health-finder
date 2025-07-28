@@ -1,28 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/theme.css";
+import "./Navbar.css";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
+    <header className="navbar">
+      <div className="navbar-left">
         <Link to="/" className="logo">
-          💚 Mental Health Finder
+          💜 Mental Health Finder
         </Link>
-        <ul className="navbar-links">
-          <li>
-            <Link to="/create-event">Create Event</Link>
-          </li>
-          <li>
-            <Link to="/find-therapists">Find Therapists</Link>
-          </li>
-          <li>
-            <Link to="/chatbot">AI Therapy Chatbot</Link>
-          </li>
-        </ul>
       </div>
-    </nav>
+      <nav className="navbar-right">
+        <Link to="/">Home</Link>
+        <Link to="/find-therapists">Find Therapists</Link>
+        <Link to="/create-event">Create Event</Link>
+        <Link to="/chatbot">AI Chatbot</Link>
+      </nav>
+    </header>
   );
-};
+}
 
 export default Navbar;
