@@ -208,7 +208,7 @@ Firebase & Render enabled low-friction deployment pipelines, CI/CD workflows, an
 
 These technologies weren’t just chosen for functionality—they were chosen to reflect a real-world build process and to reinforce user trust.
 
-🧩 What challenges did you face, and what did you learn from the experience?
+### 🧩 What challenges did you face, and what did you learn from the experience?
 
 1. OAuth Flow + Token Management
    Setting up Google OAuth across development and production environments was difficult. I ran into redirect URI mismatches and invalid grant errors. But solving those issues taught me to read API docs deeply, understand OAuth flows, and debug requests at the network level. More importantly, it taught me patience—and the value of documentation.
@@ -222,7 +222,8 @@ These technologies weren’t just chosen for functionality—they were chosen to
 4. Designing for Vulnerable Users
    This was the most meaningful lesson. When designing for users who may be overwhelmed, anxious, or in emotional distress, every interface decision matters—spacing, color, copy tone, and button clarity. I chose cheerful but soft colors, gentle microcopy, and simplified interactions to ensure the app felt like a place of comfort, not confusion.
 
-💬 Reflection
+### 💬 Reflection
+
 This wasn’t just a technical project—it was a product with purpose. It challenged me to think about how software can care. DALI values the kind of learning that doesn’t stop at the code—and this project was exactly that. I had to step up, adapt constantly, work across unfamiliar tools, and care deeply about how people would feel while using what I built.
 
 If there's one takeaway, it's this: building tech for mental health isn't just about getting things to work—it's about getting things to feel right.
