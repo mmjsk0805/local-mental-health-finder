@@ -1,4 +1,3 @@
-/* GetStarted.css */
 .get-started-hero {
   padding: 2rem 1rem;
   display: flex;
@@ -18,17 +17,17 @@
 
 .get-started-title {
   text-align: center;
-  font-size: 2rem; /* or try 2.25rem */
+  font-size: 2rem; 
   font-weight: 700;
   margin-bottom: 2rem;
   color: #1a2541;
-  white-space: nowrap; /* prevents line break */
+  white-space: nowrap; 
 }
 
 
 .get-started-container {
   display: flex;
-  justify-content: center;     /* centers contents inside */
+  justify-content: center;    
   align-items: flex-start;
   gap: 2rem;
   width: 100%;
@@ -40,7 +39,7 @@
 
 
 .get-started-image {
-  flex: 0 0 400px; /* Locks space for image container */
+  flex: 0 0 400px;
   display: flex;
   justify-content: center;
 }
@@ -72,7 +71,7 @@
 .get-started-text-box ol {
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;         /* force one line */
+  flex-wrap: nowrap;        
   gap: 2rem;
   padding: 0;
   margin: 0;
@@ -122,7 +121,7 @@
   max-width: 90%;
   margin: 2rem auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  flex-wrap: wrap; /* allows responsiveness */
+  flex-wrap: wrap; 
 }
 
 .get-started-instructions li {

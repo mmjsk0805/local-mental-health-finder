@@ -4,9 +4,11 @@ require("dotenv").config();
 
 const router = express.Router();
 
+// Route: Search for therapists using Yelp Fusion API
 router.get("/search-therapists", async (req, res) => {
   const { location, term } = req.query;
 
+  // Location is required to perform the search
   if (!location) {
     return res
       .status(400)
@@ -14,6 +16,7 @@ router.get("/search-therapists", async (req, res) => {
   }
 
   try {
+    // Call Yelp API to search for therapists in the given location
     const response = await axios.get(
       "https://api.yelp.com/v3/businesses/search",
       {
@@ -28,9 +31,11 @@ router.get("/search-therapists", async (req, res) => {
       }
     );
 
+    // Sort results by rating (highest first) before sending back
     const sortedBusinesses = response.data.businesses.sort(
       (a, b) => b.rating - a.rating
     );
+
     res.json(sortedBusinesses);
   } catch (error) {
     console.error("Yelp API error:", error.response?.data || error.message);

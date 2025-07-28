@@ -4,9 +4,11 @@ require("dotenv").config();
 
 const router = express.Router();
 
+// Route: Generates AI-powered therapist recommendations based on location and chat history
 router.post("/recommendation", async (req, res) => {
   const { location, messages } = req.body;
 
+  // Check for required inputs
   if (!location || !messages || !Array.isArray(messages)) {
     return res
       .status(400)
@@ -14,6 +16,7 @@ router.post("/recommendation", async (req, res) => {
   }
 
   try {
+    // Step 1: Fetch therapists from Yelp based on user's location
     const yelpResponse = await axios.get(
       "https://api.yelp.com/v3/businesses/search",
       {
@@ -30,6 +33,7 @@ router.post("/recommendation", async (req, res) => {
 
     const businesses = yelpResponse.data.businesses || [];
 
+    // Format therapist info into descriptive lines for GPT to reference
     const descriptions = businesses
       .map(
         (biz) =>
@@ -39,12 +43,13 @@ router.post("/recommendation", async (req, res) => {
       )
       .join("\n");
 
+    // Step 2: Ask OpenAI to analyze and select top 3 therapists based on context
     const openaiResponse = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
         model: "gpt-4o",
         messages: [
-          ...messages,
+          ...messages, // Include user and system messages so GPT has context
           {
             role: "user",
             content: `
@@ -77,6 +82,7 @@ router.post("/recommendation", async (req, res) => {
       }
     );
 
+    // Return GPT's recommendation and full business data
     const aiReply = openaiResponse.data.choices[0].message.content;
     res.json({ aiReply, businesses });
   } catch (error) {

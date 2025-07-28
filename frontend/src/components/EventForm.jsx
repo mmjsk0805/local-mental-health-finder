@@ -4,6 +4,7 @@ import axios from "axios";
 import "./EventForm.css";
 
 function EventForm() {
+  // State to hold form data for the event
   const [event, setEvent] = useState({
     summary: "",
     description: "",
@@ -11,21 +12,27 @@ function EventForm() {
     end: "",
   });
 
+  // Update state as user types into form inputs
   const handleChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
+  // Submit event to backend and Google Calendar
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Make sure required fields are filled
     if (!event.start || !event.end) {
       alert("Please fill out both start and end times.");
       return;
     }
 
     try {
+      // Get stored Google tokens from localStorage
       const accessToken = localStorage.getItem("access_token");
       const refreshToken = localStorage.getItem("refresh_token");
 
+      // Make sure user is logged in
       if (!accessToken || !refreshToken) {
         alert("🔒 Please log in with Google before creating an event.");
         return;
@@ -36,6 +43,7 @@ function EventForm() {
         refresh_token: refreshToken,
       };
 
+      // Send event + tokens to backend
       const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/calendar/create-event`,
         {
@@ -49,6 +57,7 @@ function EventForm() {
         }
       );
 
+      // Confirm to user that event was created
       alert(
         `✅ Event confirmed!\nStart: ${new Date(
           event.start

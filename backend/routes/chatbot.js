@@ -4,9 +4,11 @@ require("dotenv").config();
 
 const router = express.Router();
 
+// Main chatbot route for handling both general support and therapist recommendations
 router.post("/chatbot", async (req, res) => {
   const { messages } = req.body;
 
+  // Validate input format
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: "Messages array is required." });
   }
@@ -14,6 +16,7 @@ router.post("/chatbot", async (req, res) => {
   const lastMessage = messages[messages.length - 1]?.content.toLowerCase();
 
   try {
+    // Try to extract user location from earlier messages (if not explicitly given)
     let location = req.body.location || null;
 
     if (!location) {
@@ -34,10 +37,12 @@ router.post("/chatbot", async (req, res) => {
       }
     }
 
+    // Check if the user is asking for a therapist recommendation
     if (
       lastMessage.includes("recommend") &&
       lastMessage.includes("therapist")
     ) {
+      // Prompt user for location if missing
       if (!location) {
         return res.json({
           reply:
@@ -45,6 +50,7 @@ router.post("/chatbot", async (req, res) => {
         });
       }
 
+      // Fetch therapist data from Yelp
       const yelpResponse = await axios.get(
         "https://api.yelp.com/v3/businesses/search",
         {
@@ -61,6 +67,7 @@ router.post("/chatbot", async (req, res) => {
 
       const businesses = yelpResponse.data.businesses || [];
 
+      // Format Yelp results to include name, address, categories, reviews, rating
       const descriptions = businesses
         .map(
           (biz) =>
@@ -70,6 +77,7 @@ router.post("/chatbot", async (req, res) => {
         )
         .join("\n");
 
+      // Ask OpenAI to summarize and recommend therapists based on Yelp results
       const openaiResponse = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -101,6 +109,7 @@ ${descriptions}`,
       return res.json({ reply, businesses });
     }
 
+    // Default flow for general chatbot conversation (non-recommendation)
     const openaiResponse = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {

@@ -10,11 +10,13 @@ function TherapistSearch() {
   const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Handles form submission and fetches therapist recommendations from backend
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      // Send location and symptoms to backend for AI + Yelp-based matching
       const response = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/recommendation`,
         {
@@ -37,10 +39,12 @@ function TherapistSearch() {
       const aiReply = response.data.aiReply || "";
       setAiResponse(aiReply);
 
+      // Extract therapist names from AI response
       const topNames = [...aiReply.matchAll(/\d+\.\s\*\*(.*?)\*\*/g)].map(
         (match) => match[1].toLowerCase().trim()
       );
 
+      // Reorder Yelp businesses to highlight top 3 AI matches
       const aiMatched = [];
       const remaining = [];
 
@@ -66,6 +70,7 @@ function TherapistSearch() {
     }
   };
 
+  // Helper to format AI response with bolded therapist names
   function formatAIRecommendation(text) {
     return text.split("\n").map((line, idx) => {
       const match = line.match(/^(\d+)\.\s\*\*(.*?)\*\*\s-\s(.*)/);
@@ -88,6 +93,7 @@ function TherapistSearch() {
     });
   }
 
+  // Reusable card styling for feature highlights
   const featureBoxStyle = {
     background: "white",
     borderRadius: "1rem",
@@ -106,6 +112,8 @@ function TherapistSearch() {
         Enter your location and describe your symptoms to get AI-curated
         recommendations.
       </p>
+
+      {/* Search form */}
       <div className="search-card">
         <form
           onSubmit={handleSearch}
@@ -136,12 +144,15 @@ function TherapistSearch() {
           </button>
         </form>
       </div>
+
+      {/* Loading state */}
       {loading && (
         <p style={{ color: "#1a2541", fontWeight: "500", textAlign: "center" }}>
           Loading...
         </p>
       )}
 
+      {/* AI response section */}
       {aiResponse && (
         <div className="ai-recommendation">
           <div className="ai-recommendation-header">
@@ -153,6 +164,7 @@ function TherapistSearch() {
         </div>
       )}
 
+      {/* Therapist result cards */}
       <div
         style={{
           display: "grid",

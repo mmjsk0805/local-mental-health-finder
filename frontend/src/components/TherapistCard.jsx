@@ -11,6 +11,7 @@ function TherapistCard({ therapist, index, isRecommended }) {
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       }}
     >
+      {/* Therapist image or placeholder */}
       <div
         style={{
           width: "100%",
@@ -37,11 +38,11 @@ function TherapistCard({ therapist, index, isRecommended }) {
         )}
       </div>
 
-      {/* AI Recommendation Badge */}
+      {/* Optional badge for AI-recommended therapists */}
       {isRecommended && (
         <div
           style={{
-            backgroundColor: "#34d399", // Tailwind green-400
+            backgroundColor: "#34d399",
             color: "white",
             padding: "0.25rem 0.5rem",
             borderRadius: "12px",
@@ -56,12 +57,15 @@ function TherapistCard({ therapist, index, isRecommended }) {
         </div>
       )}
 
+      {/* Basic therapist info */}
       <h3 style={{ fontWeight: "bold", margin: "0.5rem 0" }}>
         {index + 1}. {therapist.name}
       </h3>
       <p>{therapist.location?.address1}</p>
       <p>{therapist.display_phone}</p>
       <p>⭐ {therapist.rating}</p>
+
+      {/* External link to Yelp profile */}
       <a
         href={therapist.url}
         target="_blank"

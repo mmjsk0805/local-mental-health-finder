@@ -4,12 +4,14 @@ require("dotenv").config();
 
 const router = express.Router();
 
+// OAuth2 setup using credentials from .env
 const globalOAuth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
   process.env.GOOGLE_REDIRECT_URI
 );
 
+// Redirects user to Google's OAuth consent screen
 router.get("/auth", (req, res) => {
   const authUrl = globalOAuth2Client.generateAuthUrl({
     access_type: "offline",
@@ -22,56 +24,40 @@ router.get("/auth", (req, res) => {
   res.redirect(authUrl);
 });
 
-// router.get("/oauth2callback", async (req, res) => {
-//   try {
-//     const { code } = req.query;
-//     const { tokens } = await globalOAuth2Client.getToken(code);
-//     globalOAuth2Client.setCredentials(tokens);
-
-//     const redirectBase =
-//       process.env.FRONTEND_BASE_URL || "http://localhost:5173";
-//     const queryString = new URLSearchParams({
-//       access_token: tokens.access_token,
-//       refresh_token: tokens.refresh_token,
-//     }).toString();
-
-//     res.redirect(`${redirectBase}/oauth-success?${queryString}`);
-//   } catch (error) {
-//     console.error("OAuth callback error:", error);
-//     res.status(500).json({ error: "OAuth callback failed" });
-//   }
-// });
-
+// Handles callback from Google after user authorizes the app
 router.get("/oauth2callback", async (req, res) => {
   try {
     const { code } = req.query;
+
+    // Exchange code for tokens
     const { tokens } = await globalOAuth2Client.getToken(code);
     globalOAuth2Client.setCredentials(tokens);
 
-    // Get user info from Google
+    // Grab user's email (we include this in the redirect back to frontend)
     const oauth2 = google.oauth2({
       auth: globalOAuth2Client,
       version: "v2",
     });
     const userInfo = await oauth2.userinfo.get();
-
     const userEmail = userInfo.data.email;
 
+    // Send tokens + email back to frontend
     const redirectBase =
       process.env.FRONTEND_BASE_URL || "http://localhost:5173";
     const queryString = new URLSearchParams({
       access_token: tokens.access_token,
       refresh_token: tokens.refresh_token,
-      user_email: userEmail, // ✅ include email in redirect
+      user_email: userEmail,
     }).toString();
 
     res.redirect(`${redirectBase}/oauth-success?${queryString}`);
   } catch (error) {
-    console.error("OAuth callback error:", error); // ← this is the real error
+    console.error("OAuth callback error:", error);
     res.status(500).json({ error: "OAuth callback failed" });
   }
 });
 
+// Creates a new calendar event for the user
 router.post("/create-event", async (req, res) => {
   try {
     const { tokens, event } = req.body;
@@ -80,6 +66,7 @@ router.post("/create-event", async (req, res) => {
       return res.status(400).json({ error: "Missing start or end time" });
     }
 
+    // Set up OAuth client with user's tokens
     const userOAuthClient = new google.auth.OAuth2();
     userOAuthClient.setCredentials({
       access_token: tokens.access_token,
