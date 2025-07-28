@@ -5,6 +5,7 @@
 [![Express](https://img.shields.io/badge/Backend-Express-green)](https://expressjs.com/)
 [![OpenAI](https://img.shields.io/badge/AI-OpenAI-black)](https://platform.openai.com/)
 [![Google Calendar API](https://img.shields.io/badge/API-Google_Calendar-red)](https://developers.google.com/calendar)
+[![Yelp API](https://img.shields.io/badge/API-Yelp_Fusion-darkred)](https://www.yelp.com/developers/documentation/v3)
 
 **Local Mental Health Finder** is a full-stack web application that helps users find local therapists based on their symptoms and location, book appointments through Google Calendar, and chat with an AI-powered mental health assistant powered by OpenAI.
 
