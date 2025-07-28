@@ -6,6 +6,7 @@ import EventForm from "./components/EventForm";
 import AIChatbot from "./components/AIChatbot";
 import OAuthSuccess from "./components/OAuthSuccess";
 import "./styles/theme.css";
+import GetStarted from "./components/GetStarted";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/find-therapists" element={<TherapistSearch />} />
           <Route path="/create-event" element={<EventForm />} />
           <Route path="/chatbot" element={<AIChatbot />} />
+          <Route path="/get-started" element={<GetStarted />} />
         </Routes>
       </main>
     </div>

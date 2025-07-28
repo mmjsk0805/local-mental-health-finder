@@ -1,8 +1,10 @@
 import React from "react";
 import "./Home.css";
 import heroImg from "../assets/hero.png";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <main className="home">
       <section className="hero">
@@ -12,9 +14,12 @@ function Home() {
             Find compassionate, local mental health support — from therapists
             and events to guided AI conversations.
           </p>
-          <a href="#features" className="btn-primary">
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/get-started")}
+          >
             Get Started →
-          </a>
+          </button>
         </div>
         <div className="hero-image">
           <img src={heroImg} alt="Meditating woman illustration" />

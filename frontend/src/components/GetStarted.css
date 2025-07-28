@@ -1,0 +1,158 @@
+/* GetStarted.css */
+.get-started-hero {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.get-started-hero h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1a2541;
+  margin-bottom: 2.5rem;
+}
+
+
+.get-started-title {
+  text-align: center;
+  font-size: 2rem; /* or try 2.25rem */
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1a2541;
+  white-space: nowrap; /* prevents line break */
+}
+
+
+.get-started-container {
+  display: flex;
+  justify-content: center;     /* centers contents inside */
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+
+
+.get-started-image {
+  flex: 0 0 400px; /* Locks space for image container */
+  display: flex;
+  justify-content: center;
+}
+.get-started-image img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+
+.get-started-text-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  flex: 1 1 auto;
+  max-width: 100%;
+  min-width: 750px;      
+}
+
+.get-started-text-box h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1a2541;
+}
+
+.get-started-text-box ol {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;         /* force one line */
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.get-started-text-box li {
+  flex: 1 1 0;
+  max-width: 250px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+
+.get-started-text-box li strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #1a2541;
+}
+
+.back-link {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #4f46e5;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #4338ca;
+}
+
+.get-started-instructions {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 90%;
+  margin: 2rem auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap; /* allows responsiveness */
+}
+
+.get-started-instructions li {
+  flex: 1 1 250px;
+  list-style: none;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  max-width: 300px;
+}
+
+
+@media (max-width: 768px) {
+  .get-started-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .get-started-image,
+  .get-started-text-box {
+    width: 100%;
+    max-width: 90%;
+  }
+}
+
+
+.step-icon {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0.5rem;
+}
+
+

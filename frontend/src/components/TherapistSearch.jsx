@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import TherapistCard from "./TherapistCard";
+import "./TherapistSearch.css";
 
 function TherapistSearch() {
   const [location, setLocation] = useState("");
@@ -87,41 +88,66 @@ function TherapistSearch() {
     });
   }
 
+  const featureBoxStyle = {
+    background: "white",
+    borderRadius: "1rem",
+    padding: "2rem",
+    maxWidth: "320px",
+    flex: "1",
+    textAlign: "center",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+    color: "#1f2937",
+  };
+
   return (
-    <div style={{ padding: "2rem" }}>
-      <form onSubmit={handleSearch} style={{ marginBottom: "1rem" }}>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter city or zipcode"
-          style={{ padding: "0.5rem", marginRight: "0.5rem" }}
-        />
-        <input
-          type="text"
-          value={symptoms}
-          onChange={(e) => setSymptoms(e.target.value)}
-          placeholder="Describe your symptoms or needs"
-          style={{ padding: "0.5rem", marginRight: "0.5rem" }}
-        />
-        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
-          Search
-        </button>
-      </form>
-
-      {loading && <p>Loading...</p>}
-
-      {aiResponse && (
-        <div
+    <div className="therapist-page">
+      <h1 className="therapist-title">Find a Therapist Who Understands You</h1>
+      <p className="therapist-subtitle">
+        Enter your location and describe your symptoms to get AI-curated
+        recommendations.
+      </p>
+      <div className="search-card">
+        <form
+          onSubmit={handleSearch}
           style={{
-            marginBottom: "1rem",
-            background: "#eef2ff",
-            padding: "1rem",
-            borderRadius: "8px",
+            marginBottom: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
           }}
         >
-          <h4>AI Recommendation</h4>
-          <div style={{ lineHeight: "1.6" }}>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Enter city or zipcode"
+            style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+          />
+          <input
+            type="text"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
+            placeholder="Describe your symptoms or needs"
+            style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+          />
+          <button type="submit" style={{ padding: "0.5rem 1rem" }}>
+            Search
+          </button>
+        </form>
+      </div>
+      {loading && (
+        <p style={{ color: "#1a2541", fontWeight: "500", textAlign: "center" }}>
+          Loading...
+        </p>
+      )}
+
+      {aiResponse && (
+        <div className="ai-recommendation">
+          <div className="ai-recommendation-header">
+            🤖 <span>AI Recommendation</span>
+          </div>
+          <div className="ai-recommendation-body">
             {formatAIRecommendation(aiResponse)}
           </div>
         </div>
@@ -131,7 +157,8 @@ function TherapistSearch() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "1rem",
+          gap: "1.5rem",
+          marginTop: "2rem",
         }}
       >
         {results.map((biz, index) => (

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+import "./EventForm.css";
+
 function EventForm() {
   const [event, setEvent] = useState({
     summary: "",
@@ -15,7 +17,6 @@ function EventForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!event.start || !event.end) {
       alert("Please fill out both start and end times.");
       return;
@@ -40,7 +41,6 @@ function EventForm() {
         }
       );
 
-      console.log("🎯 Event creation response:", response.data);
       alert(
         `✅ Event confirmed!\nStart: ${new Date(
           event.start
@@ -53,12 +53,9 @@ function EventForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md"
-      >
-        <h2 className="text-xl font-bold mb-4">Create Google Calendar Event</h2>
+    <div className="event-page-container">
+      <form onSubmit={handleSubmit} className="event-form">
+        <h2>Create Google Calendar Event</h2>
 
         <input
           type="text"
@@ -67,7 +64,6 @@ function EventForm() {
           value={event.summary}
           onChange={handleChange}
           required
-          className="w-full p-2 mb-3 rounded bg-gray-700"
         />
 
         <input
@@ -76,7 +72,6 @@ function EventForm() {
           placeholder="Description"
           value={event.description}
           onChange={handleChange}
-          className="w-full p-2 mb-3 rounded bg-gray-700"
         />
 
         <input
@@ -85,7 +80,6 @@ function EventForm() {
           value={event.start}
           onChange={handleChange}
           required
-          className="w-full p-2 mb-3 rounded bg-gray-700"
         />
 
         <input
@@ -94,15 +88,9 @@ function EventForm() {
           value={event.end}
           onChange={handleChange}
           required
-          className="w-full p-2 mb-4 rounded bg-gray-700"
         />
 
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-600 hover:bg-blue-700 rounded"
-        >
-          Create Event
-        </button>
+        <button type="submit">Create Event</button>
       </form>
     </div>
   );
