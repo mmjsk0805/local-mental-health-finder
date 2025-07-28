@@ -138,9 +138,39 @@ Then open [http://localhost:5173](http://localhost:5173) to use the app.
 
 ---
 
-## 📷 Screenshots (Coming Soon)
+## 📷 Screenshots
 
-Feel free to submit a pull request with UI snapshots you'd like featured here.
+### 🏠 Landing Page (Home)
+
+![Home](./screenshots/home.png)
+
+### 💡 How It Works Section
+
+![Get Started](./screenshots/getstarted.png)
+
+### 🧑‍⚕️ Therapist Search Page
+
+![Search](./screenshots/search.png)
+
+### 🔍 Filled Search Example (e.g., "New York City", "I feel depressed")
+
+![Filled Search](./screenshots/search1.png)
+
+### 🤖 AI-Powered Therapist Recommendations
+
+![AI Results](./screenshots/searchAI.png)
+
+### 📋 Yelp-Based Search Results
+
+![Search Results](./screenshots/searchresult.png)
+
+### 📅 Google Calendar Event Creation
+
+![Event Creation](./screenshots/event.png)
+
+### 💬 AI Therapy Chatbot
+
+![Chatbot](./screenshots/chat.png)
 
 ---
 
