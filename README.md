@@ -39,13 +39,13 @@ This project was built with empathy, accessibility, and practical utility in min
 
 ```
 local-mental-health-finder/
-├── backend/               # Express API for auth, calendar, and therapist search
+├── backend/
 │   ├── routes/
 │   │   ├── auth.js
 │   │   ├── calendar.js
 │   │   └── yelp.js
 │   └── server.js
-├── frontend/              # React frontend
+├── frontend/
 │   ├── src/components/
 │   │   ├── TherapistCard.jsx
 │   │   ├── AIChatbot.jsx
@@ -53,13 +53,20 @@ local-mental-health-finder/
 │   │   └── Navbar.jsx
 │   ├── App.jsx
 │   └── ...
-├── .firebase/             # Firebase hosting setup
-├── .github/workflows/     # GitHub Actions (CI/CD)
+├── .firebase/
+├── .github/workflows/
 ├── firebase.json
 ├── .firebaserc
 ├── .env.example
 └── README.md
 ```
+
+---
+
+## 🔗 Deployed Application
+
+Try the live app here:  
+🌐 [https://local-mental-health-find-96e8c.web.app](https://local-mental-health-find-96e8c.web.app)
 
 ---
 
@@ -72,7 +79,7 @@ git clone https://github.com/mmjsk0805/local-mental-health-finder.git
 cd local-mental-health-finder
 ```
 
-### 2. Configure environment variables
+### 2. Add environment variables
 
 #### `/backend/.env`
 
@@ -93,95 +100,90 @@ VITE_BACKEND_URL=https://your-backend.com
 
 ### 3. Install dependencies
 
-#### Backend
-
 ```bash
 cd backend
 npm install
-```
-
-#### Frontend
-
-```bash
 cd ../frontend
 npm install
 ```
 
----
-
-## 🔧 Running the App Locally
-
-### Start the backend server
+### 4. Run the application locally
 
 ```bash
+# In one terminal
 cd backend
 npm run dev
-```
 
-### Start the frontend
-
-```bash
+# In another terminal
 cd frontend
 npm run dev
 ```
 
-Then open [http://localhost:5173](http://localhost:5173) to use the app.
-
----
-
-## 📌 Future Improvements
-
-- [ ] Store and display user’s previous chatbot sessions
-- [ ] Add mobile responsiveness
-- [ ] UI theming (dark mode / accessibility)
-- [ ] Allow feedback or review of therapist matches
+Then open `http://localhost:5173` in your browser.
 
 ---
 
 ## 📷 Screenshots
 
-### 🏠 Landing Page (Home)
+### 🏠 Home Page
 
 ![Home](./screenshots/home.png)
 
-### 💡 How It Works Section
+### 💡 Get Started Section
 
 ![Get Started](./screenshots/getstarted.png)
 
-### 🧑‍⚕️ Therapist Search Page
+### 🧑‍⚕️ Search Input Page
 
 ![Search](./screenshots/search.png)
 
-### 🔍 Filled Search Example (e.g., "New York City", "I feel depressed")
+### 🔍 Filled Search Example
 
-![Filled Search](./screenshots/search1.png)
+![Search1](./screenshots/search1.png)
 
-### 🤖 AI-Powered Therapist Recommendations
+### 🤖 AI Recommendations
 
 ![AI Results](./screenshots/searchAI.png)
 
-### 📋 Yelp-Based Search Results
+### 📋 Yelp Therapist Results
 
 ![Search Results](./screenshots/searchresult.png)
 
-### 📅 Google Calendar Event Creation
+### 📅 Create Event Page
 
-![Event Creation](./screenshots/event.png)
+![Calendar](./screenshots/event.png)
 
-### 💬 AI Therapy Chatbot
+### 💬 Chatbot Interface
 
 ![Chatbot](./screenshots/chat.png)
 
 ---
 
-## 🏗 Built With
+## 🧭 Learning Journey
 
-- React + Tailwind CSS
-- Node.js + Express
-- OpenAI GPT
+### 💡 What inspired this project?
+
+This project was inspired by the real struggle many people face trying to find mental health support. It's hard enough to ask for help—finding the right provider or even knowing what to look for can be overwhelming. I wanted to build something that made those first steps easier, less lonely, and more intuitive.
+
+### 🌍 Potential impact on users and the broader community
+
+The app lowers the barrier to care by offering a way to search for therapists based on symptoms, book appointments with a few clicks, and talk to an AI assistant that offers support 24/7. It can be a meaningful bridge for people who aren’t ready or able to access therapy yet.
+
+### 🛠 Technologies I learned
+
+- Google OAuth 2.0 + Calendar API
 - Yelp Fusion API
-- Google Calendar API + OAuth2
-- Firebase + Render
+- OpenAI GPT API for conversation generation
+- Tailwind CSS
+- Firebase + Render deployment
+- CORS, .env, and secure API key handling
+
+### ⚙️ Challenges and takeaways
+
+- Debugging redirect errors taught me how OAuth2 flows really work
+- Prompt engineering gave me control over chatbot tone and usefulness
+- Multi-platform deployment helped me structure my project cleanly
+- Most importantly, I learned how to design for vulnerable users with care and intention
 
 ---
 
@@ -189,11 +191,3 @@ Then open [http://localhost:5173](http://localhost:5173) to use the app.
 
 MIT License  
 © 2025 [Jaden Moon](https://github.com/mmjsk0805)
-
----
-
-## 🙌 Acknowledgments
-
-This project was created with support from the Dartmouth developer community and built for people seeking clarity, care, and connection.
-
----
