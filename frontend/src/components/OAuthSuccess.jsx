@@ -9,29 +9,28 @@ function OAuthSuccess() {
     const params = new URLSearchParams(location.search);
     const accessToken = params.get("access_token");
     const refreshToken = params.get("refresh_token");
+    const userEmail = params.get("email");
 
     if (accessToken && refreshToken) {
       try {
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("refresh_token", refreshToken);
-        localStorage.setItem("user_email", userEmail);
+        if (userEmail) {
+          localStorage.setItem("user_email", userEmail);
+        }
 
-        console.log("✅ Tokens stored in localStorage");
-
-        setTimeout(() => navigate("/create-event"), 1000);
+        console.log("✅ Tokens stored. Redirecting to /create-event...");
+        navigate("/create-event"); // ⬅️ Immediate navigation
       } catch (error) {
         console.error("❌ Failed to store tokens", error);
       }
     } else {
       console.warn("⚠️ Missing tokens in query params");
+      navigate("/"); // fallback if tokens missing
     }
   }, [location, navigate]);
 
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-xl font-bold">Google Calendar Connected ✅</h1>
-    </div>
-  );
+  return null; // ⬅️ No need to render anything
 }
 
 export default OAuthSuccess;

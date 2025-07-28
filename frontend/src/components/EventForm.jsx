@@ -23,9 +23,17 @@ function EventForm() {
     }
 
     try {
+      const accessToken = localStorage.getItem("access_token");
+      const refreshToken = localStorage.getItem("refresh_token");
+
+      if (!accessToken || !refreshToken) {
+        alert("🔒 Please log in with Google before creating an event.");
+        return;
+      }
+
       const tokens = {
-        access_token: localStorage.getItem("access_token"),
-        refresh_token: localStorage.getItem("refresh_token"),
+        access_token: accessToken,
+        refresh_token: refreshToken,
       };
 
       const response = await axios.post(
