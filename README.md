@@ -124,6 +124,22 @@ Then open `http://localhost:5173` in your browser.
 
 ---
 
+### 🧭 How to Use the Application
+
+When users visit the **Local Mental Health Finder**, they’re greeted with a clean, calming homepage and a simple navigation bar. Scrolling down, they land on the **“Get Started”** section, which provides a step-by-step guide for using the app. This page is designed to reduce friction and anxiety by showing users exactly what to expect—from entering symptoms to booking a session or chatting with the AI.
+
+From there, users can either **search for therapists** or **chat with the AI assistant**:
+
+- On the **“Find Therapists”** page, users enter their **location** and **briefly describe their symptoms** (e.g., “I feel anxious” or “I’m burned out”). The app then uses the **Yelp Fusion API** to display nearby therapists who match those needs. Each listing includes real reviews and contact information so users can make informed decisions.
+
+- When ready to take the next step, users visit the **“Create Event”** page. After signing in with **Google OAuth**, they can instantly book a mental health appointment and have it synced to their **Google Calendar** with proper timezone detection.
+
+- Alternatively, users can choose the **AI Chatbot**, a friendly, private conversational interface powered by **OpenAI GPT**. This space is ideal for those who want to express what they’re feeling without pressure. The chatbot responds with warmth, structure, and language that supports reflection and self-understanding.
+
+All features are built with user-centered design and accessibility in mind, ensuring a smooth experience for people in emotionally vulnerable moments.
+
+---
+
 ## 📷 Screenshots
 
 ### 🏠 Home Page
