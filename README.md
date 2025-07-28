@@ -246,7 +246,7 @@ This was the most meaningful lesson. When designing for users who may be overwhe
 
 ### 💬 Reflection
 
-This wasn’t just a technical project—it was a **product with purpose**. It challenged me to think about how software can care. DALI values the kind of learning that doesn’t stop at the code—and this project was exactly that. I had to step up, adapt constantly, work across unfamiliar tools, and care deeply about how people would feel while using what I built.
+This wasn’t just a technical project—it was a **product with purpose**. It challenged me to think about how software can care. DALI values the kind of learning that doesn’t stop at the code—and this project was exactly that. I had to step up, adapt constantly, work across unfamiliar tools, and care deeply about how people would feel while using what I built. It was a great experience!
 
 If there's one takeaway, it's this: building tech for mental health isn't just about getting things to work—it's about getting things to feel right.
 
