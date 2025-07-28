@@ -156,7 +156,7 @@ Then open `http://localhost:5173` in your browser.
 
 ### 💬 Chatbot Interface
 
-![Chatbot](./screenshots/chat.png)
+![Chatbot](./screenshots/chat1.png)
 
 ---
 
