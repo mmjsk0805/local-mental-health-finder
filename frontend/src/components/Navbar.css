@@ -62,3 +62,26 @@
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
 }
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-button,
+.login-button {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover,
+.login-button:hover {
+  background-color: #4338ca;
+}

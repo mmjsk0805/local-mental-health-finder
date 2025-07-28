@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   const [userEmail, setUserEmail] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -13,8 +14,6 @@ function Navbar() {
     if (emailFromUrl) {
       localStorage.setItem("user_email", emailFromUrl);
       setUserEmail(emailFromUrl);
-
-      // Remove query params from URL
       window.history.replaceState({}, document.title, window.location.pathname);
     } else if (emailFromStorage) {
       setUserEmail(emailFromStorage);
@@ -24,6 +23,14 @@ function Navbar() {
   const handleLogin = () => {
     window.location.href =
       "https://local-mental-health-finder-1.onrender.com/calendar/auth";
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    setUserEmail(null);
+    navigate("/"); // Optional: redirect to homepage
   };
 
   return (
@@ -38,8 +45,14 @@ function Navbar() {
         <Link to="/find-therapists">Find Therapists</Link>
         <Link to="/create-event">Create Event</Link>
         <Link to="/chatbot">AI Chatbot</Link>
+
         {userEmail && userEmail !== "null" && userEmail !== "undefined" ? (
-          <span className="user-email">{userEmail.split("@")[0]}</span>
+          <div className="user-info">
+            <span className="user-email">{userEmail.split("@")[0]}</span>
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         ) : (
           <button className="login-button" onClick={handleLogin}>
             Login with Google

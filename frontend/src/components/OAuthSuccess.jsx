@@ -14,6 +14,10 @@ function OAuthSuccess() {
       try {
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("refresh_token", refreshToken);
+
+        if (userEmail) {
+          localStorage.setItem("user_email", userEmail);
+        }
         console.log("✅ Tokens stored in localStorage");
 
         setTimeout(() => navigate("/create-event"), 1000);

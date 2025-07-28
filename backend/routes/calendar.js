@@ -19,17 +19,52 @@ router.get("/auth", (req, res) => {
   res.redirect(authUrl);
 });
 
+// router.get("/oauth2callback", async (req, res) => {
+//   try {
+//     const { code } = req.query;
+//     const { tokens } = await globalOAuth2Client.getToken(code);
+//     globalOAuth2Client.setCredentials(tokens);
+
+//     const redirectBase =
+//       process.env.FRONTEND_BASE_URL || "http://localhost:5173";
+//     const queryString = new URLSearchParams({
+//       access_token: tokens.access_token,
+//       refresh_token: tokens.refresh_token,
+//     }).toString();
+
+//     res.redirect(`${redirectBase}/oauth-success?${queryString}`);
+//   } catch (error) {
+//     console.error("OAuth callback error:", error);
+//     res.status(500).json({ error: "OAuth callback failed" });
+//   }
+// });
+
 router.get("/oauth2callback", async (req, res) => {
   try {
     const { code } = req.query;
+
+    // Step 1: Get tokens and set credentials
     const { tokens } = await globalOAuth2Client.getToken(code);
     globalOAuth2Client.setCredentials(tokens);
 
+    // Step 2: Fetch user email using OAuth2 API
+    const oauth2 = google.oauth2({
+      auth: globalOAuth2Client,
+      version: "v2",
+    });
+
+    const { data } = await oauth2.userinfo.get();
+    const userEmail = data.email;
+
+    // Step 3: Determine redirect base
     const redirectBase =
       process.env.FRONTEND_BASE_URL || "http://localhost:5173";
+
+    // Step 4: Pass access_token, refresh_token, and user_email to frontend
     const queryString = new URLSearchParams({
       access_token: tokens.access_token,
       refresh_token: tokens.refresh_token,
+      user_email: userEmail || "",
     }).toString();
 
     res.redirect(`${redirectBase}/oauth-success?${queryString}`);
