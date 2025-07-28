@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background-color: #fefaf5 !important; /* cream background */
+  background-color: #fefaf5 !important; 
   padding: 1.5rem 3rem;
   display: flex;
   justify-content: space-between;
@@ -34,7 +34,7 @@
 }
 
 .navbar-right a:hover {
-  color: #4338ca !important; /* deep indigo on hover */
+  color: #4338ca !important; 
 }
 
 

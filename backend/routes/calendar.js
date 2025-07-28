@@ -33,7 +33,7 @@ router.get("/oauth2callback", async (req, res) => {
     const { tokens } = await globalOAuth2Client.getToken(code);
     globalOAuth2Client.setCredentials(tokens);
 
-    // Grab user's email (we include this in the redirect back to frontend)
+    // Grab user's email
     const oauth2 = google.oauth2({
       auth: globalOAuth2Client,
       version: "v2",
