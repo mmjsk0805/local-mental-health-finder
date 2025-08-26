@@ -156,7 +156,7 @@ function TherapistSearch() {
       {aiResponse && (
         <div className="ai-recommendation">
           <div className="ai-recommendation-header">
-            🤖 <span>AI Recommendation</span>
+            <span>AI Recommendation</span>
           </div>
           <div className="ai-recommendation-body">
             {formatAIRecommendation(aiResponse)}

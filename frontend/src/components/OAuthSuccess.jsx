@@ -21,14 +21,14 @@ function OAuthSuccess() {
           localStorage.setItem("user_email", userEmail);
         }
 
-        console.log("✅ Tokens stored. Redirecting to /create-event...");
+        console.log("Tokens stored. Redirecting to /create-event...");
         navigate("/create-event"); // Automatically go to event creation page
       } catch (error) {
-        console.error("❌ Failed to store tokens", error);
+        console.error("Failed to store tokens", error);
       }
     } else {
       // If tokens are missing, return to homepage
-      console.warn("⚠️ Missing tokens in query params");
+      console.warn("Missing tokens in query params");
       navigate("/");
     }
   }, [location, navigate]);

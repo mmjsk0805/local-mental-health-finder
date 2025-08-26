@@ -62,7 +62,7 @@ function AIChatbot() {
   return (
     <div className="chatbot-container">
       <div className="chat-window">
-        <h2 className="chat-title">😊 AI Therapy Chatbot</h2>
+        <h2 className="chat-title">AI Therapy Chatbot</h2>
 
         {/* Message history display */}
         <div className="chat-messages">

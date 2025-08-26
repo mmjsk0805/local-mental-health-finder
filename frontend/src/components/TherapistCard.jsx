@@ -53,7 +53,7 @@ function TherapistCard({ therapist, index, isRecommended }) {
             marginBottom: "0.5rem",
           }}
         >
-          🌟 AI Recommended
+          AI Recommended
         </div>
       )}
 
@@ -63,7 +63,7 @@ function TherapistCard({ therapist, index, isRecommended }) {
       </h3>
       <p>{therapist.location?.address1}</p>
       <p>{therapist.display_phone}</p>
-      <p>⭐ {therapist.rating}</p>
+      <p>{therapist.rating}</p>
 
       {/* External link to Yelp profile */}
       <a

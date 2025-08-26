@@ -34,7 +34,7 @@ function EventForm() {
 
       // Make sure user is logged in
       if (!accessToken || !refreshToken) {
-        alert("🔒 Please log in with Google before creating an event.");
+        alert("Please log in with Google before creating an event.");
         return;
       }
 

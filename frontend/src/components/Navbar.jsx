@@ -42,7 +42,7 @@ function Navbar() {
     <header className="navbar">
       <div className="navbar-left">
         <Link to="/" className="logo">
-          💜 Mental Health Finder
+          Mental Health Finder
         </Link>
       </div>
 
