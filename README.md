@@ -1,4 +1,4 @@
-# 🧠 Local Mental Health Finder
+# Local Mental Health Finder
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/Frontend-React-blue)](https://reactjs.org/)
@@ -13,17 +13,17 @@ This project was built with empathy, accessibility, and practical utility in min
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🔍 Therapist search using the **Yelp Fusion API**
-- 📅 Google Calendar event creation with **OAuth2**
-- 🔐 Google login & authentication
-- 💬 AI chatbot powered by **OpenAI GPT**
-- 🌍 Fully connected frontend/backend + deployment
+- Therapist search using the **Yelp Fusion API**
+- Google Calendar event creation with **OAuth2**
+- Google login & authentication
+- AI chatbot powered by **OpenAI GPT**
+- Fully connected frontend/backend + deployment
 
 ---
 
-## 🧑‍💻 Tech Stack
+## Tech Stack
 
 | Layer      | Tools & Services                      |
 | ---------- | ------------------------------------- |
@@ -36,7 +36,7 @@ This project was built with empathy, accessibility, and practical utility in min
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 local-mental-health-finder/
@@ -64,14 +64,14 @@ local-mental-health-finder/
 
 ---
 
-## 🔗 Deployed Application
+## Deployed Application
 
 Try the live app here:  
-🌐 [https://local-mental-health-find-96e8c.web.app](https://local-mental-health-find-96e8c.web.app)
+[https://local-mental-health-find-96e8c.web.app](https://local-mental-health-find-96e8c.web.app)
 
 ---
 
-## 🧪 Getting Started
+## Getting Started
 
 ### 1. Clone the repository
 
@@ -124,7 +124,7 @@ Then open `http://localhost:5173` in your browser.
 
 ---
 
-### 🧭 How to Use the Application
+### How to Use the Application
 
 When users visit the **Local Mental Health Finder**, they’re greeted with a clean, calming homepage and a simple navigation bar. Scrolling down, they land on the **“Get Started”** section, which provides a step-by-step guide for using the app. This page is designed to reduce friction and anxiety by showing users exactly what to expect—from entering symptoms to booking a session or chatting with the AI.
 
@@ -140,45 +140,45 @@ All features are built with user-centered design and accessibility in mind, ensu
 
 ---
 
-## 📷 Screenshots
+## Screenshots
 
-### 🏠 Home Page
+### Home Page
 
 ![Home](./screenshots/home.png)
 
-### 💡 Get Started Section
+### Get Started Section
 
 ![Get Started](./screenshots/getstarted.png)
 
-### 🧑‍⚕️ Search Input Page
+### Search Input Page
 
 ![Search](./screenshots/search.png)
 
-### 🔍 Filled Search Example
+### Filled Search Example
 
 ![Search1](./screenshots/search1.png)
 
-### 🤖 AI Recommendations
+### AI Recommendations
 
 ![AI Results](./screenshots/searchAI.png)
 
-### 📋 Yelp Therapist Results
+### Yelp Therapist Results
 
 ![Search Results](./screenshots/searchresult.png)
 
-### 📅 Create Event Page
+### Create Event Page
 
 ![Calendar](./screenshots/event.png)
 
-### 💬 Chatbot Interface
+### Chatbot Interface
 
 ![Chatbot](./screenshots/chat1.png)
 
 ---
 
-## 🧭 Learning Journey
+## Learning Journey
 
-### 💡 What inspired you to create this project?
+### What inspired you to create this project?
 
 This project grew from a recurring question I’ve seen too many people struggle with: _“I think I need help, but where do I start?”_ Whether it’s a student battling burnout or someone quietly carrying anxiety or depression, the first step toward seeking mental health support is often the hardest. I wanted to make that step feel less overwhelming, more guided, and accessible.
 
@@ -188,7 +188,7 @@ The inspiration wasn’t just technical—it was deeply human. I wanted to build
 
 ---
 
-### 🌍 What potential impact do you believe it could have on its intended users or the broader community?
+### What potential impact do you believe it could have on its intended users or the broader community?
 
 **Local Mental Health Finder** aims to be more than just a directory or chatbot—it’s designed to be a _first step_. For someone unsure of where to turn, it provides immediate, understandable options: therapists in their area based on symptoms, calendar-based scheduling to reduce procrastination, and an AI-powered space to reflect, vent, or get initial guidance.
 
@@ -198,7 +198,7 @@ The app’s potential lies in how it humanizes mental health access—not by rep
 
 ---
 
-### 🧠 What new technologies did you learn?
+### What new technologies did you learn?
 
 Throughout this project, I explored tools that pushed my boundaries both as a developer and as a designer:
 
@@ -210,7 +210,7 @@ Throughout this project, I explored tools that pushed my boundaries both as a de
 
 ---
 
-### ⚙️ Why did you choose these technologies?
+### Why did you choose these technologies?
 
 I chose each of these tools based on their **real-world reliability**, **developer support**, and **alignment with user needs**:
 
@@ -224,7 +224,7 @@ These technologies weren’t just chosen for functionality—they were chosen to
 
 ---
 
-### 🧩 What challenges did you face, and what did you learn from the experience?
+### What challenges did you face, and what did you learn from the experience?
 
 #### 1. **OAuth Flow + Token Management**
 
@@ -244,7 +244,7 @@ This was the most meaningful lesson. When designing for users who may be overwhe
 
 ---
 
-### 💬 Reflection
+### Reflection
 
 This wasn’t just a technical project—it was a **product with purpose**. It challenged me to think about how software can care. DALI values the kind of learning that doesn’t stop at the code—and this project was exactly that. I had to step up, adapt constantly, work across unfamiliar tools, and care deeply about how people would feel while using what I built. It was a great experience!
 
@@ -252,7 +252,7 @@ If there's one takeaway, it's this: building tech for mental health isn't just a
 
 ---
 
-## 📄 License
+## License
 
 MIT License  
 © 2025 [Jaden Moon](https://github.com/mmjsk0805)
